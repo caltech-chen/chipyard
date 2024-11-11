@@ -9,6 +9,7 @@ CYDIR=$(git rev-parse --show-toplevel)
 
 # get helpful utilities
 source $CYDIR/scripts/utils.sh
+#获取git repo的根目录
 
 common_setup
 
