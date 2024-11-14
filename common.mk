@@ -4,7 +4,7 @@ SED ?= sed
 ifndef RISCV
 $(error RISCV is unset. Did you source the Chipyard auto-generated env file (which activates the default conda environment)?)
 else
-$(info Running with RISCV=$(RISCV))
+$(info ,this is the start point,Running with RISCV=$(RISCV) )
 endif
 
 #########################################################################################
@@ -446,3 +446,23 @@ check-submodule-status:
 print-%:
 	@echo "$*=$($*)"
 	@echo "Origin is: $(origin $*)"
+
+#########################################################################################
+# complie scala code
+##
+cmp_scala: $(GENERATOR_CLASSPATH) 
+	# $(call run_scala_main,$(PROJECT_NAME),chipyard.CompileOptions,$(PROJECT_NAME))
+
+## run scala main class
+run_cmp_scala:
+	(set -o pipefail && $(call run_jar_scala_main,$(GENERATOR_CLASSPATH),$(GENERATOR_PACKAGE).Generator,\
+		--target-dir $(build_dir) \
+		--name $(long_name) \
+		--top-module $(MODEL_PACKAGE).$(MODEL) \
+		--legacy-configs $(CONFIG_PACKAGE):$(CONFIG) \
+		$(ASPECT_ARGS) \
+		$(EXTRA_CHISEL_OPTIONS)) | tee $(CHISEL_LOG_FILE))	
+
+##compile &	run scala
+quick_try:
+	$(MAKE) cmp_scala run_cmp_scala

@@ -6,10 +6,11 @@ set -o pipefail
 #设置脚本异常退出
 
 CYDIR=$(git rev-parse --show-toplevel)
+## 获取git repo的根目录
 
 # get helpful utilities
 source $CYDIR/scripts/utils.sh
-#获取git repo的根目录
+
 
 common_setup
 
@@ -70,6 +71,7 @@ GITHUB_TOKEN="null"
 
 # getopts does not support long options, and is inflexible
 while [ "$1" != "" ];
+//检测脚本输入参数是否为空，不为空则执行如下case语句
 do
     case $1 in
         -h | --help )
