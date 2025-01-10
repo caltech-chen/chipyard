@@ -154,3 +154,6 @@
 [submodule "generators/vexiiriscv"]
 	path = generators/vexiiriscv
 	url = https://github.com/ucb-bar/vexiiriscv-tile.git
+[submodule "generators/hwacha"]
+	path = generators/hwacha
+	url = https://github.com/ucb-bar/hwacha.git

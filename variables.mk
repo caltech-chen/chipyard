@@ -236,6 +236,7 @@ define run_scala_main
 	cd $(base_dir) && $(SBT) ";project $(1); runMain $(2) $(3)"
 endef
 
+# 何处调用该宏，从make log中看，sbt是使用该宏启动编译的
 # (1) - sbt project to assemble
 # (2) - classpath file(s) to create
 define run_sbt_assembly
@@ -278,9 +279,13 @@ endif
 # build output directory for compilation
 #########################################################################################
 # output for all project builds
+# 生成所有配置对应verilog代码的根目录
 generated_src_name ?=generated-src
+
+
 gen_dir             =$(sim_dir)/$(generated_src_name)
 # per-project output directory
+# 生成当前配置对应verilog代码的根目录
 build_dir           =$(gen_dir)/$(long_name)
 # final generated collateral per-project
 GEN_COLLATERAL_DIR ?=$(build_dir)/gen-collateral

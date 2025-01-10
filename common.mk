@@ -465,4 +465,9 @@ run_cmp_scala:
 
 ##compile &	run scala
 quick_try:
-	$(MAKE) cmp_scala run_cmp_scala
+	$(MAKE) cmp_scala run_cmp_scala CONFIG=Sodor1StageConfig
+
+hwacha_quick_try:
+	$(MAKE) cmp_scala run_cmp_scala CONFIG=HwachaRocketConfig
+	
+	

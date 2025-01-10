@@ -77,6 +77,7 @@ cd "$RDIR"
             generators/rocket-chip \
             generators/compress-acc \
             generators/vexiiriscv \
+            generators/hwacha \
             sims/firesim \
             software/nvdla-workload \
             software/coremark \
@@ -130,6 +131,9 @@ cd "$RDIR"
 
     # Non-recursive clone
     git submodule update --init generators/compress-acc
+
+    # Non-recursive clone
+    git submodule update --init generators/hwacha
 
     # Non-recursive clone
     git submodule update --init generators/vexiiriscv

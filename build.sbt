@@ -5,6 +5,7 @@ val chiselTestVersion = "6.0.0"
 val scalaVersionFromChisel = "2.13.12"
 
 val chisel3Version = "3.6.1"
+val chiselVersion = "3.5.5"
 
 // This gives us a nicer handle to the root project instead of using the
 // implicit one
@@ -97,11 +98,12 @@ lazy val chisel3Settings = Seq(
   addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % chisel3Version cross CrossVersion.full)
 )
 
-lazy val chiselSettings = chisel6Settings ++ Seq(
-  libraryDependencies ++= Seq(
+lazy val chiselSettings = chisel6Settings  ++ Seq(
+  libraryDependencies ++= Seq(//"edu.berkeley.cs" %% "chisel" % chiselVersion,
     "org.apache.commons" % "commons-lang3" % "3.12.0",
     "org.apache.commons" % "commons-text" % "1.9"
-  )
+  ),
+ // addCompilerPlugin("edu.berkeley.cs" % "chisel-plugin" % chiselVersion cross CrossVersion.full)
 )
 
 lazy val scalaTestSettings =  Seq(
@@ -156,6 +158,7 @@ lazy val testchipip = (project in file("generators/testchipip"))
 lazy val chipyard = (project in file("generators/chipyard"))
   .dependsOn(testchipip, rocketchip, boom, rocketchip_blocks, rocketchip_inclusive_cache,
     dsptools, rocket_dsp_utils,
+    // hwacha,
     gemmini, icenet, tracegen, cva6, nvdla, sodor, ibex, fft_generator,
     constellation, mempress, barf, shuttle, caliptra_aes, rerocc,
     compressacc, saturn, ara, firrtl2_bridge, vexiiriscv)
@@ -242,6 +245,11 @@ lazy val sodor = (project in file("generators/riscv-sodor"))
   .dependsOn(rocketchip)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
+
+// lazy val hwacha = (project in file("generators/hwacha"))
+//   .dependsOn(rocketchip)
+//   .settings(libraryDependencies ++= rocketLibDeps.value)
+//   .settings(commonSettings)  
 
 lazy val gemmini = freshProject("gemmini", file("generators/gemmini"))
   .dependsOn(rocketchip)

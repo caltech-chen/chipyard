@@ -71,3 +71,11 @@ class ZstdCompressorRocketConfig extends Config(
   new compressacc.WithZstdCompressor ++
   new freechips.rocketchip.rocket.WithNHugeCores(1) ++
   new chipyard.config.AbstractConfig)
+
+// // DOC include start: GemminiRocketConfig
+// class HwachaRocketConfig extends Config(
+//   new hwacha.DefaultHwachaConfig ++                            // use hwacha systolic array GEMM accelerator
+//   new freechips.rocketchip.rocket.WithNHugeCores(1) ++
+//   new chipyard.config.WithSystemBusWidth(128) ++
+//   new chipyard.config.AbstractConfig)
+  
